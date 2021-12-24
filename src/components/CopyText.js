@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../sass/App.scss';
 
-function CopyText({ clipping, key }) {
+function CopyText({ clipping }) {
 
   const [copied, setCopied] = useState(false);
 
@@ -19,8 +19,11 @@ function CopyText({ clipping, key }) {
 
   return (
     <div className="copy-text" onClick={() => copytoClipboard()}>
+      <div className="copied" style={{ opacity: copied ? 1 : 0 }}>
+        <p>Copied!</p>
+      </div>
+
       <p>{clipping}</p>
-      <p>{copied ? "copied" : "copy"}</p>
     </div>
   );
 }
