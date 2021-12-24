@@ -32,13 +32,15 @@ function App() {
   }
 
   function newText(e) {
-    if (e.charCode === 13) {
+    if (e.charCode === 13 && !e.shiftKey) {
       e.preventDefault();
 
       setClippings(m => [
         ...m,
         inputClipping
       ]);
+
+      console.log(clippings);
 
       setInputClipping("");
     }
