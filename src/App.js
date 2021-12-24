@@ -40,8 +40,6 @@ function App() {
         inputClipping
       ]);
 
-      console.log(clippings);
-
       setInputClipping("");
     }
   }
@@ -52,7 +50,8 @@ function App() {
 
   return (
     <div className="App">
-      <img id="fork" src={forkImg} style={fork}></img>
+      <img id="fork" src={forkImg} style={fork}/>
+
       <div className="content">
         <h1>Copypasta!</h1>
 

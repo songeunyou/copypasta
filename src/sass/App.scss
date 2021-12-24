@@ -1,6 +1,11 @@
 @import 'fonts';
 @import 'variables';
 
+html {
+  min-width: 360px;
+  border-radius: 4px;
+}
+
 .App {
   position: relative;
   text-align: center;
