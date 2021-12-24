@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import '../sass/App.scss';
 
-function CopyText(props) {
+function CopyText({ clipping, key }) {
 
   const [copied, setCopied] = useState(false);
 
@@ -8,7 +9,7 @@ function CopyText(props) {
       // reset the copy animation
       setCopied(false);
 
-      navigator.clipboard.writeText(props.clipping).then(function() {
+      navigator.clipboard.writeText(clipping).then(function() {
           setCopied(true);
           setTimeout(() => setCopied(false), 2500);
       }.bind(this), function() {
@@ -17,9 +18,9 @@ function CopyText(props) {
   }
 
   return (
-    <div className="CopyText" onClick={() => copytoClipboard()}>
-      <p>{copied ? "copied" : "not copied yet"}</p>
-      {props.clipping}
+    <div className="copy-text" onClick={() => copytoClipboard()}>
+      <p>{clipping}</p>
+      <p>{copied ? "copied" : "copy"}</p>
     </div>
   );
 }

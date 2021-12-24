@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import './sass/App.scss';
 
 import CopyText from './components/CopyText';
 
@@ -20,11 +20,10 @@ function App() {
     if (e.charCode === 13) {
       e.stopPropagation();
 
-      let n = clippings;
-      n.push(inputClipping);
-
-      setClippings(n);
-      setInputClipping("");
+      setInputClipping(m => [
+        ...m,
+        inputClipping
+      ]);
     }
   }
 
@@ -34,14 +33,17 @@ function App() {
 
   return (
     <div className="App">
-      <p>Copy whatever you want with ease</p>
+      <div className="content">
+        <h1>Copypasta!</h1>
+        <p>Copy whatever you want with ease</p>
 
-      <div className="copy-textblocks">
-        {clippings ?
-          clippings.map(clipping =>
-            <CopyText clipping={clipping}/>
-          )
-        : ""}
+        <div className="copy-textblocks">
+          {clippings ?
+            clippings.map((clipping, i) =>
+              <CopyText key={i} clipping={clipping}/>
+            )
+          : ""}
+        </div>
 
         <textarea
           type="text"
