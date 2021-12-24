@@ -2,7 +2,7 @@
 @import 'variables';
 
 html {
-  min-width: 360px;
+  min-width: 300px;
   border-radius: 4px;
 }
 
@@ -34,11 +34,20 @@ p {
   padding: 12px;
 }
 
+.edit-btn {
+  cursor: pointer;
+}
+
 #fork {
   position: absolute;
   width: 25px;
   z-index: 30;
   pointer-events: none;
+}
+
+.copy-textblocks {
+  max-height: 400px;
+  overflow: scroll;
 }
 
 .copy-text {

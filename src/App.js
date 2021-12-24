@@ -10,6 +10,7 @@ function App() {
   let [clippings, setClippings] = useState(["hey"]);
   let [inputClipping, setInputClipping] = useState("");
   let [fork, setFork] = useState({});
+  let [editingMode, setEditingMode] = useState(false);
 
   useEffect(() => {
     document.body.style.cursor = 'none';
@@ -48,17 +49,32 @@ function App() {
     setInputClipping(e.target.value);
   }
 
+  function deleteClipping(clipping) {
+    setClippings(clippings.filter(c => c !== clipping));
+  }
+
   return (
     <div className="App">
       <img id="fork" src={forkImg} style={fork}/>
 
       <div className="content">
         <h1>Copypasta!</h1>
+        <span>
+          <button
+            className="edit-btn"
+            onClick={() => setEditingMode(!editingMode)}>
+            {editingMode ? "stop editing" : "edit"}
+          </button>
+        </span>
 
         <div className="copy-textblocks">
           {clippings ?
             clippings.map((clipping, i) =>
-              <CopyText key={i} clipping={clipping}/>
+              <CopyText
+                key={i}
+                editingMode={editingMode}
+                deleteClipping={deleteClipping}
+                clipping={clipping}/>
             )
           : ""}
         </div>
