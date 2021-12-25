@@ -49,7 +49,7 @@ function App() {
     <div className="App">
       <div className="content">
         <h1>Copypasta!</h1>
-        <span>
+        <span className="edit-span">
           <button
             className="edit-btn"
             onClick={() => setEditingMode(!editingMode)}>

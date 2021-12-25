@@ -19,7 +19,7 @@ function CopyText({ clipping, editingMode }) {
 
       navigator.clipboard.writeText(clipping).then(function() {
           setCopied(true);
-          setTimeout(() => setCopied(false), 2500);
+          setTimeout(() => setCopied(false), 1200);
       }.bind(this), function() {
           console.log("Failed to copy");
       });
@@ -28,7 +28,7 @@ function CopyText({ clipping, editingMode }) {
   return (
     <div className="copy-text" onClick={() => handleClick()}>
       <div className="copied" style={{ opacity: copied ? 1 : 0 }}>
-        <p>Copied!</p>
+        <p>Copied</p>
       </div>
 
       <p>{clipping}</p>
