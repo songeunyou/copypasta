@@ -9,7 +9,6 @@ html {
 .App {
   position: relative;
   text-align: center;
-  border-radius: 4px;
 }
 
 /*--------------- FONTS ---------------*/
@@ -87,8 +86,10 @@ p {
   textarea {
     margin: 0px;
     background: none;
+    margin-bottom: 0px;
 
     &:focus {
+      border: 1px solid #758397;
       border-radius: 5px 0px 0px 5px;
       margin: -1px;
     }
@@ -124,13 +125,13 @@ textarea {
   resize: none;
   background: #FBFCFC;
   margin-top: 4px;
+  margin-bottom: -3px;
   word-wrap: break-word;
   overflow-wrap: break-word;
 
   &:focus {
     box-sizing: border-box;
     outline: none !important;
-    border: 1px solid #758397;
   }
 
   &::placeholder {
