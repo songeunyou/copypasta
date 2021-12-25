@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './sass/App.scss';
 
 import CopyText from './components/CopyText';
+import EditText from './components/EditText';
 
 function App() {
 
@@ -38,6 +39,12 @@ function App() {
     setClippings(clippings.filter(c => c !== clipping));
   }
 
+  function saveEditedClipping(index, newClipping) {
+    let tempClippings = [...clippings]; // copying the old datas array
+    tempClippings[index] = newClipping;
+    setClippings(tempClippings);
+  }
+
   return (
     <div className="App">
       <div className="content">
@@ -53,12 +60,18 @@ function App() {
         <div className="copy-textblocks">
           {clippings ?
             clippings.map((clipping, i) =>
-              <CopyText
-                key={i}
-                editingMode={editingMode}
-                deleteClipping={deleteClipping}
-                clipping={clipping}/>
-            )
+              (editingMode ?
+                <EditText
+                  key={i}
+                  index={i}
+                  saveEditedClipping={saveEditedClipping}
+                  deleteClipping={deleteClipping}
+                  clipping={clipping}/>
+                :
+                <CopyText
+                  key={i}
+                  clipping={clipping}/>
+              ))
           : ""}
         </div>
       </div>

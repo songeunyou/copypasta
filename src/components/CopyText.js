@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../sass/App.scss';
 
-function CopyText({ clipping, editingMode, deleteClipping }) {
+function CopyText({ clipping, editingMode }) {
 
   const [copied, setCopied] = useState(false);
 
@@ -27,20 +27,11 @@ function CopyText({ clipping, editingMode, deleteClipping }) {
 
   return (
     <div className="copy-text" onClick={() => handleClick()}>
-      {
-        editingMode ? "" :
-        <div className="copied" style={{ opacity: copied ? 1 : 0 }}>
-          <p>Copied!</p>
-        </div>
-      }
+      <div className="copied" style={{ opacity: copied ? 1 : 0 }}>
+        <p>Copied!</p>
+      </div>
 
       <p>{clipping}</p>
-
-      {
-        editingMode ?
-        <button onClick={() => deleteClipping(clipping)}>delete</button>
-        : ""
-      }
     </div>
   );
 }
