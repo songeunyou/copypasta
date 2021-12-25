@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../sass/App.scss';
 
-function CopyText({ clipping, editingMode }) {
+function Clipping({ clipping, editingMode }) {
 
   const [copied, setCopied] = useState(false);
 
@@ -36,4 +36,4 @@ function CopyText({ clipping, editingMode }) {
   );
 }
 
-export default CopyText;
+export default Clipping;

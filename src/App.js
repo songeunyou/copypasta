@@ -1,48 +1,63 @@
 import { useEffect, useState } from 'react';
 import './sass/App.scss';
 
-import CopyText from './components/CopyText';
-import EditText from './components/EditText';
+import Clipping from './components/Clipping';
+import EditableClipping from './components/EditableClipping';
 
 function App() {
-
+  let [loaded, setLoaded] = useState(false);
   let [clippings, setClippings] = useState(["Click me 😁"]);
-  let [inputClipping, setInputClipping] = useState("");
+  let [input, setInput] = useState("");
   let [editingMode, setEditingMode] = useState(false);
 
-  function getTexts() {
+  useEffect(() => {
+    // loaded keeps track of the very first time we load the app
+    // only fetch from localstorage at the start, every other time useEffect runs,
+    // we want to set the clippings within localStorage
+    if (!loaded && localStorage.getItem("copypasta") != null) {
+      getStoredClippings(); // from localStorage
+      setLoaded(true);
+    }
+
+    setStoredClippings();
+  }, [clippings]);
+
+  // localStorage functions
+  function getStoredClippings() {
     var storedClippings = JSON.parse(localStorage.getItem("copypasta"));
+    setClippings(storedClippings);
   }
 
-  function setTexts() {
+  function setStoredClippings() {
     localStorage.setItem("copypasta", JSON.stringify(clippings));
   }
 
-  function newText(e) {
-    if (e.charCode === 13 && !e.shiftKey && inputClipping.trim().length != 0) {
+  // clipping handling functions
+  function newClipping(e) {
+    if (e.charCode === 13 && !e.shiftKey && input.trim().length != 0) {
       e.preventDefault();
 
       setClippings(m => [
         ...m,
-        inputClipping
+        input
       ]);
 
-      setInputClipping("");
+      setInput("");
     }
   }
 
-  function handleInputChange(e) {
-    setInputClipping(e.target.value);
+  function editClipping(index, newClipping) {
+    let tempClippings = [...clippings]; // copying the old data array
+    tempClippings[index] = newClipping;
+    setClippings(tempClippings);
   }
 
   function deleteClipping(clipping) {
     setClippings(clippings.filter(c => c !== clipping));
   }
 
-  function saveEditedClipping(index, newClipping) {
-    let tempClippings = [...clippings]; // copying the old datas array
-    tempClippings[index] = newClipping;
-    setClippings(tempClippings);
+  function handleInputChange(e) {
+    setInput(e.target.value);
   }
 
   return (
@@ -57,18 +72,18 @@ function App() {
           </button>
         </span>
 
-        <div className="copy-textblocks">
+        <div className="clipping-list">
           {clippings && clippings.length > 0 ?
             clippings.map((clipping, i) =>
               (editingMode ?
-                <EditText
+                <EditableClipping
                   key={i}
                   index={i}
-                  saveEditedClipping={saveEditedClipping}
+                  editClipping={editClipping}
                   deleteClipping={deleteClipping}
                   clipping={clipping}/>
                 :
-                <CopyText
+                <Clipping
                   key={i}
                   clipping={clipping}/>
               ))
@@ -80,9 +95,9 @@ function App() {
       <textarea
         type="text"
         placeholder="type a new copypasta"
-        value={inputClipping}
+        value={input}
         onChange={handleInputChange}
-        onKeyPress={(e) => newText(e)}/>
+        onKeyPress={(e) => newClipping(e)}/>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../sass/App.scss';
 
-function EditText({ index, clipping, saveEditedClipping, deleteClipping }) {
+function EditableClipping({ index, clipping, editClipping, deleteClipping }) {
 
   let [inputClipping, setInputClipping] = useState(clipping);
 
@@ -12,7 +12,7 @@ function EditText({ index, clipping, saveEditedClipping, deleteClipping }) {
   function handleEnter(e) {
     if (e.charCode === 13 && !e.shiftKey) {
       e.preventDefault();
-      saveEditedClipping(index, inputClipping);
+      editClipping(index, inputClipping);
       document.activeElement.blur();
     }
   }
@@ -33,4 +33,4 @@ function EditText({ index, clipping, saveEditedClipping, deleteClipping }) {
   );
 }
 
-export default EditText;
+export default EditableClipping;
