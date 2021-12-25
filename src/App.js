@@ -1,28 +1,13 @@
 import { useEffect, useState } from 'react';
 import './sass/App.scss';
 
-import forkImg from './media/fork.png';
-
 import CopyText from './components/CopyText';
 
 function App() {
 
   let [clippings, setClippings] = useState(["hey"]);
   let [inputClipping, setInputClipping] = useState("");
-  let [fork, setFork] = useState({});
   let [editingMode, setEditingMode] = useState(false);
-
-  useEffect(() => {
-    document.body.style.cursor = 'none';
-    window.addEventListener("mousemove", handleMove);
-  }, []);
-
-  function handleMove(e) {
-    setFork({
-      top: e.clientY,
-      left: e.clientX
-    });
-  }
 
   function getTexts() {
     var storedClippings = JSON.parse(localStorage.getItem("copypasta"));
@@ -55,8 +40,6 @@ function App() {
 
   return (
     <div className="App">
-      <img id="fork" src={forkImg} style={fork}/>
-
       <div className="content">
         <h1>Copypasta!</h1>
         <span>
