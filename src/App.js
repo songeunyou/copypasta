@@ -6,7 +6,7 @@ import EditText from './components/EditText';
 
 function App() {
 
-  let [clippings, setClippings] = useState(["hey"]);
+  let [clippings, setClippings] = useState(["Click me 😁"]);
   let [inputClipping, setInputClipping] = useState("");
   let [editingMode, setEditingMode] = useState(false);
 
@@ -72,7 +72,7 @@ function App() {
                   key={i}
                   clipping={clipping}/>
               ))
-            : <p>Get started by adding some text to easily copy + paste</p>
+            : <p className="empty-placeholder">Get started by adding some text to easily copy + paste</p>
           }
         </div>
       </div>
