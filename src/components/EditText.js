@@ -18,9 +18,8 @@ function EditText({ index, clipping, saveEditedClipping, deleteClipping }) {
   }
 
   return (
-    <div>
+    <div className="copy-text edit-text">
       <textarea
-        className="copy-text"
         type="text"
         placeholder="type a new copypasta"
         value={inputClipping}
@@ -29,7 +28,7 @@ function EditText({ index, clipping, saveEditedClipping, deleteClipping }) {
 
       <button
         className="delete-btn"
-        onClick={() => deleteClipping(clipping)}>delete</button>
+        onClick={() => deleteClipping(clipping)}>✕</button>
     </div>
   );
 }

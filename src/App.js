@@ -19,7 +19,7 @@ function App() {
   }
 
   function newText(e) {
-    if (e.charCode === 13 && !e.shiftKey) {
+    if (e.charCode === 13 && !e.shiftKey && inputClipping.trim().length != 0) {
       e.preventDefault();
 
       setClippings(m => [
@@ -58,7 +58,7 @@ function App() {
         </span>
 
         <div className="copy-textblocks">
-          {clippings ?
+          {clippings && clippings.length > 0 ?
             clippings.map((clipping, i) =>
               (editingMode ?
                 <EditText
@@ -72,7 +72,8 @@ function App() {
                   key={i}
                   clipping={clipping}/>
               ))
-          : ""}
+            : <p>Get started by adding some text to easily copy + paste</p>
+          }
         </div>
       </div>
 

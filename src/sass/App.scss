@@ -27,6 +27,8 @@ p {
   margin: 0px;
   font-size: $p-size;
   color: $p-color;
+  word-break: break-all;
+  white-space: normal;
 }
 
 /*--------------- COMPONENTS ---------------*/
@@ -62,13 +64,41 @@ p {
     white-space: pre-line;
     text-align: left;
   }
+}
+
+.edit-text {
+  padding: 1px;
+
+  textarea {
+    margin: 0px;
+    background: none;
+
+    &:focus {
+      border-radius: 5px 0px 0px 5px;
+      margin: -1px;
+    }
+  }
 
   .delete-btn {
     cursor: pointer;
+    margin: 8px;
+    font-weight: bold;
+    padding: 0px 12px;
+    color: #CFD7E5;
+    background: #F0F2F5;
+    border: none;
+    border-radius: 2px;
+    transition: 0.1s;
+
+    &:hover {
+      color: #EA1537;
+      background: #FF99AB;
+    }
   }
 }
 
 textarea {
+  box-sizing: border-box;
   font-family: SF;
   display: inline-block;
   font-size: $p-size;
@@ -81,6 +111,12 @@ textarea {
   margin-top: 4px;
   word-wrap: break-word;
   overflow-wrap: break-word;
+
+  &:focus {
+    box-sizing: border-box;
+    outline: none !important;
+    border: 1px solid #758397;
+  }
 
   &::placeholder {
     color: #A5AEBB;
