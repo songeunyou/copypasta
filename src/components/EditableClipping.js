@@ -32,9 +32,12 @@ function EditableClipping({ index, clipping, editClipping, deleteClipping }) {
   function handleEnter(e) {
     if (e.charCode === 13 && !e.shiftKey) {
       e.preventDefault();
-      editClipping(index, inputClipping);
       document.activeElement.blur();
     }
+  }
+
+  function onBlur() {
+    editClipping(index, inputClipping);
   }
 
   return (
@@ -44,7 +47,8 @@ function EditableClipping({ index, clipping, editClipping, deleteClipping }) {
         placeholder="type a new copypasta"
         value={inputClipping}
         onChange={handleInputChange}
-        onKeyPress={(e) => handleEnter(e)}/>
+        onKeyPress={(e) => handleEnter(e)}
+        onBlur={onBlur}/>
 
       <button
         className="delete-btn"
