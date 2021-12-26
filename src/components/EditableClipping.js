@@ -1,9 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import '../sass/App.scss';
+
+// create a ref to detect prop change
+function usePrevious(value) {
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current = value;
+  });
+
+  return ref.current;
+}
 
 function EditableClipping({ index, clipping, editClipping, deleteClipping }) {
 
   let [inputClipping, setInputClipping] = useState(clipping);
+
+  const prevClipping = usePrevious(clipping);
+
+  useEffect(() => {
+    if (prevClipping !== clipping) {
+      setInputClipping(clipping);
+    }
+  }, [clipping]);
 
   function handleInputChange(e) {
     setInputClipping(e.target.value);
