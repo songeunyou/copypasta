@@ -83,6 +83,7 @@ function App() {
           </button>
         </span>
 
+        <div className="test">
         <div id="clippings-list" className="clipping-list">
           {clippings && clippings.length > 0 ?
             clippings.map((clipping, i) =>
@@ -100,12 +101,15 @@ function App() {
               ))
             : <p className="empty-placeholder">Get started by adding some text to easily copy + paste</p>
           }
-        </div>
 
-        <div className="bg">
-          <div className="bg-gradient"/>
-          <img src={holo} className="bg-texture"/>
+          <div className="textarea-shadow"/>
+
+          <div className="bg">
+            <div className="bg-gradient"/>
+            <img src={holo} className="bg-texture"/>
+          </div>
         </div>
+      </div>
       </div>
 
       <TextareaAutosize
