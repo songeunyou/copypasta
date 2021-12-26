@@ -9,6 +9,7 @@ function App() {
   let [clippings, setClippings] = useState(["Click me 😁"]);
   let [input, setInput] = useState("");
   let [editingMode, setEditingMode] = useState(false);
+  let [creatingNewClipping, setCreatingNewClipping] = useState(false);
 
   useEffect(() => {
     // loaded keeps track of the very first time we load the app
@@ -20,7 +21,13 @@ function App() {
     }
 
     setStoredClippings();
-  }, [clippings]);
+
+    if (creatingNewClipping == true) {
+      var list = document.getElementById('clippings-list');
+      list.scrollTop = list.scrollHeight;
+      setCreatingNewClipping(false);
+    }
+  }, [clippings, creatingNewClipping]);
 
   // localStorage functions
   function getStoredClippings() {
@@ -43,6 +50,7 @@ function App() {
       ]);
 
       setInput("");
+      setCreatingNewClipping(true);
     }
   }
 
@@ -72,7 +80,7 @@ function App() {
           </button>
         </span>
 
-        <div className="clipping-list">
+        <div id="clippings-list" className="clipping-list">
           {clippings && clippings.length > 0 ?
             clippings.map((clipping, i) =>
               (editingMode ?
