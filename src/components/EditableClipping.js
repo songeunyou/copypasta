@@ -14,12 +14,12 @@ function usePrevious(value) {
 }
 
 function EditableClipping({ index, clipping, editClipping, deleteClipping }) {
-
   let [inputClipping, setInputClipping] = useState(clipping);
-
   const prevClipping = usePrevious(clipping);
 
   useEffect(() => {
+    // because we set the textarea input text manually with handleInputChange,
+    // we need to update the input text when a text clipping has been deleted from the parent array
     if (prevClipping !== clipping) {
       setInputClipping(clipping);
     }
@@ -36,12 +36,13 @@ function EditableClipping({ index, clipping, editClipping, deleteClipping }) {
     }
   }
 
+  // save edits when textarea loses focus
   function onBlur() {
     editClipping(index, inputClipping);
   }
 
   return (
-    <div className="copy-text edit-text">
+    <div className="clipping editable-clipping">
       <TextareaAutosize
         type="text"
         placeholder="type a new copypasta"

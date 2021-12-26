@@ -32,7 +32,7 @@ p {
   white-space: pre-wrap;
 }
 
-/*--------------- COMPONENTS ---------------*/
+/*--------------- BUTTONS & SYSTEM MESSAGES ---------------*/
 
 .edit-span {
   padding: 0px 12px 10px 12px;
@@ -52,7 +52,7 @@ p {
   }
 }
 
-.empty-placeholder {
+.empty-list-placeholder {
   margin: 10px 12px 25px 12px;
   padding: 20px;
   border-radius: $border-radius;
@@ -62,9 +62,8 @@ p {
   backdrop-filter: blur(20px);
 }
 
-.test {
-  position: relative;
-}
+/*--------------- TEXT CLIPPINGS ---------------*/
+
 .clipping-list {
   padding: 12px;
   padding-right: 25px;
@@ -75,7 +74,7 @@ p {
   scroll-behavior: smooth;
 }
 
-.copy-text {
+.clipping {
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -103,33 +102,7 @@ p {
   }
 }
 
-.bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-  bottom: 0px;
-  left: 0px;
-
-  .bg-gradient {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(white,white,rgba(255,255,255,0));
-    z-index: 3;
-  }
-
-  .bg-texture {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    bottom: 0px;
-    left: 0px;
-  }
-}
-
-.edit-text {
+.editable-clipping {
   padding: 0px;
 
   textarea {
@@ -186,6 +159,7 @@ textarea {
   }
 }
 
+// shadow over text area, for style
 .textarea-shadow {
   position: absolute;
   width: 100%;
@@ -196,6 +170,7 @@ textarea {
   z-index: 4;
 }
 
+// message that indicates you have copied a text clipping
 .copied {
   position: absolute;
   display: flex;
@@ -212,5 +187,38 @@ textarea {
     font-size: 24px;
     font-family: Migra;
     color: white;
+  }
+}
+
+/*--------------- BACKGROUND IMAGE ---------------*/
+
+// required to position background image properly
+.relative-parent {
+  position: relative;
+}
+
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0px;
+  left: 0px;
+  z-index: -1;
+
+  .bg-gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(white,white,rgba(255,255,255,0));
+    z-index: 3;
+  }
+
+  .bg-texture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0px;
+    left: 0px;
+    z-index: -10;
   }
 }

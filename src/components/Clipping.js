@@ -1,17 +1,8 @@
 import { useEffect, useState } from 'react';
 import '../sass/App.scss';
 
-function Clipping({ clipping, editingMode }) {
-
+function Clipping({ clipping }) {
   const [copied, setCopied] = useState(false);
-
-  function handleClick() {
-    if (editingMode) {
-
-    } else {
-      copytoClipboard();
-    }
-  }
 
   function copytoClipboard() {
       // reset the copy animation
@@ -26,7 +17,7 @@ function Clipping({ clipping, editingMode }) {
   }
 
   return (
-    <div className="copy-text" onClick={() => handleClick()}>
+    <div className="clipping" onClick={() => copytoClipboard()}>
       <div className="copied" style={{ opacity: copied ? 1 : 0 }}>
         <p>Copied</p>
       </div>

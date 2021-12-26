@@ -15,9 +15,9 @@ function App() {
   let [creatingNewClipping, setCreatingNewClipping] = useState(false);
 
   useEffect(() => {
-    // loaded keeps track of the very first time we load the app
-    // only fetch from localstorage at the start, every other time useEffect runs,
-    // we want to set the clippings within localStorage
+    // var loaded keeps track of the very first time we load the app
+    // only fetch from localstorage at the start. Every other time that useEffect runs,
+    // we want to save the clippings to localStorage
     if (!loaded && localStorage.getItem("copypasta") != null) {
       getStoredClippings(); // from localStorage
       setLoaded(true);
@@ -25,6 +25,7 @@ function App() {
 
     setStoredClippings();
 
+    // scrolling to bottom of text clippings list whenever we add a new clipping
     if (creatingNewClipping == true) {
       var list = document.getElementById('clippings-list');
       list.scrollTop = list.scrollHeight;
@@ -32,7 +33,7 @@ function App() {
     }
   }, [clippings, creatingNewClipping]);
 
-  // localStorage functions
+  //---------- localStorage functions
   function getStoredClippings() {
     var storedClippings = JSON.parse(localStorage.getItem("copypasta"));
     setClippings(storedClippings);
@@ -42,7 +43,7 @@ function App() {
     localStorage.setItem("copypasta", JSON.stringify(clippings));
   }
 
-  // clipping handling functions
+  //---------- clipping handling functions
   function newClipping(e) {
     if (e.charCode === 13 && !e.shiftKey && input.trim().length != 0) {
       e.preventDefault();
@@ -67,6 +68,7 @@ function App() {
     setClippings(clippings.filter(c => c !== clipping));
   }
 
+  //---------- handle editing text area
   function handleInputChange(e) {
     setInput(e.target.value);
   }
@@ -83,33 +85,33 @@ function App() {
           </button>
         </span>
 
-        <div className="test">
-        <div id="clippings-list" className="clipping-list">
-          {clippings && clippings.length > 0 ?
-            clippings.map((clipping, i) =>
-              (editingMode ?
-                <EditableClipping
-                  key={i}
-                  index={i}
-                  editClipping={editClipping}
-                  deleteClipping={deleteClipping}
-                  clipping={clipping}/>
-                :
-                <Clipping
-                  key={i}
-                  clipping={clipping}/>
-              ))
-            : <p className="empty-placeholder">Get started by adding some text to easily copy + paste</p>
-          }
+        <div className="relative-parent">
+          <div id="clippings-list" className="clipping-list">
+            {clippings && clippings.length > 0 ?
+              clippings.map((clipping, i) =>
+                (editingMode ?
+                  <EditableClipping
+                    key={i}
+                    index={i}
+                    editClipping={editClipping}
+                    deleteClipping={deleteClipping}
+                    clipping={clipping}/>
+                  :
+                  <Clipping
+                    key={i}
+                    clipping={clipping}/>
+                ))
+              : <p className="empty-list-placeholder">Get started by adding some text to easily copy + paste</p>
+            }
 
-          <div className="textarea-shadow"/>
+            <div className="textarea-shadow"/>
 
-          <div className="bg">
-            <div className="bg-gradient"/>
-            <img src={holo} className="bg-texture"/>
+            <div className="bg">
+              <div className="bg-gradient"/>
+              <img src={holo} className="bg-texture"/>
+            </div>
           </div>
         </div>
-      </div>
       </div>
 
       <TextareaAutosize
