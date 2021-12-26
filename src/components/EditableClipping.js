@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import '../sass/App.scss';
+import TextareaAutosize from 'react-textarea-autosize';
 
 // create a ref to detect prop change
 function usePrevious(value) {
@@ -38,7 +39,7 @@ function EditableClipping({ index, clipping, editClipping, deleteClipping }) {
 
   return (
     <div className="copy-text edit-text">
-      <textarea
+      <TextareaAutosize
         type="text"
         placeholder="type a new copypasta"
         value={inputClipping}

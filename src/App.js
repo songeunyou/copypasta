@@ -3,6 +3,9 @@ import './sass/App.scss';
 
 import Clipping from './components/Clipping';
 import EditableClipping from './components/EditableClipping';
+import TextareaAutosize from 'react-textarea-autosize';
+
+import holo from './media/holo_texture.jpg';
 
 function App() {
   let [loaded, setLoaded] = useState(false);
@@ -98,9 +101,14 @@ function App() {
             : <p className="empty-placeholder">Get started by adding some text to easily copy + paste</p>
           }
         </div>
+
+        <div className="bg">
+          <div className="bg-gradient"/>
+          <img src={holo} className="bg-texture"/>
+        </div>
       </div>
 
-      <textarea
+      <TextareaAutosize
         type="text"
         placeholder="type a new copypasta"
         value={input}
