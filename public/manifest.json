@@ -1,7 +1,7 @@
 {
   "short_name": "Copypasta",
   "name": "Copypasta",
-  "description": "Easy copyable text snippets",
+  "description": "Easily copy & paste your text snippets",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
