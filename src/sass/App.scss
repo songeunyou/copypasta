@@ -64,8 +64,9 @@ p {
   position: relative;
 }
 .clipping-list {
-  // position: relative;
   padding: 12px;
+  padding-right: 25px;
+  margin-right: -13px;
   padding-top: 0px;
   max-height: 400px;
   overflow: scroll;
@@ -87,7 +88,7 @@ p {
   backdrop-filter: blur(20px);
 
   &:first-of-type {
-    margin-top: 0px;
+    margin-top: 2px;
   }
 
   &:hover {
@@ -127,7 +128,7 @@ p {
 }
 
 .edit-text {
-  padding: 1px;
+  padding: 0px;
 
   textarea {
     margin: 0px;
@@ -135,9 +136,7 @@ p {
     margin-bottom: 0px;
 
     &:focus {
-      border: 1px solid $grey;
       border-radius: 5px 0px 0px 5px;
-      margin: -1px;
     }
   }
 
