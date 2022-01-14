@@ -2,6 +2,8 @@
 
 > A Chrome extension that stores text clippings for you to easily copy and paste!
 
+[Install the Chrome Extension](https://chrome.google.com/webstore/detail/copypasta/lgapkbbdlekmaeomdpndkpkmckghjnmh)
+
 Type in your text clipping and now you can copy it from any tab with a single click.
 
 The data is saved to localStorage, which supposedly holds up to 5MB, so there’s plenty of room for actual copypastas. I tried it with the bee movie script and it works fine, although it’s a bit of a hassle to scroll through all of it to reach the bottom ¯\_(ツ)_/¯
